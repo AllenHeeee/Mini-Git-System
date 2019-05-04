@@ -6,6 +6,14 @@
 #include <fcntl.h>
 #include <netinet/in.h> 
 #include <sys/socket.h> 
+#include <pthread.h>
+#include <netdb.h>
+#define h_addr h_addr_list[0]
+void error(char *msg)
+{
+    perror(msg);
+    exit(1);
+}
 void erase(char* str){
     int i=0;
     for(;i<999;i++){

@@ -1,6 +1,4 @@
 #include"wtf.h"
-#include <pthread.h>
-#include <netdb.h>
 int port=0;
 char* IP;
 char* Port;
@@ -11,15 +9,13 @@ void connection(){
  network_socket= socket(AF_INET,SOCK_STREAM,0);
  
  struct sockaddr_in server_address;
- server_address.sin_family = AF_INET;
+
 
 struct hostent *server;
  server=gethostbyname(IP);
  bzero((char *) &server_address, sizeof(server_address));
  server_address.sin_family = AF_INET;
  memcpy(&server_address.sin_addr,server->h_addr,server->h_length);
-
-
  server_address.sin_port=htons(port);
 if(inet_pton(AF_INET,IP, &server_address.sin_addr)<=0)  
     { 
